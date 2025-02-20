@@ -36,6 +36,7 @@ class Database {
                 define: {
                     underscored: false, // Disable automatic lowercasing of column names 
                 },
+                logging: console.log, // Logs all queries to the console
             });
             yield this.sequelize.authenticate()
                 .then(() => { console.log("connection established successfully."); })

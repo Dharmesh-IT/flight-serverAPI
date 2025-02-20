@@ -28,6 +28,7 @@ export class Database {
                 underscored: false, // Disable automatic lowercasing of column names 
 
             },
+            logging: console.log, // Logs all queries to the console
         });
 
         await this.sequelize.authenticate()

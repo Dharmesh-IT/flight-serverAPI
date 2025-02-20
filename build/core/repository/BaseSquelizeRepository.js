@@ -80,9 +80,16 @@ class BaseSequelizeRepository {
     findOne(where) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield this.model.findOne({ where });
+                console.log('WHERE CONDITION RECEIVED:', JSON.stringify(where));
+                const record = yield this.model.findOne({ where });
+                console.log("Query Result:", record);
+                if (!record) {
+                    //console.warn('No record found for the given criteria:', where);
+                }
+                return record;
             }
             catch (error) {
+                console.error('Error fetching record:', error);
                 throw new RepositoryError_1.RepositoryError('Failed to fetch record', error);
             }
         });

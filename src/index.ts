@@ -1,4 +1,4 @@
-import './config/otel-setup';
+// import './config/otel-setup';
 import "reflect-metadata";
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";

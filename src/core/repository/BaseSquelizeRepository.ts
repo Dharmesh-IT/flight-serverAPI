@@ -3,7 +3,7 @@ import { IRepository } from './IRepository';
 import { RepositoryError } from './RepositoryError';
 import { WhereOptions } from 'sequelize';
 
-export abstract class BaseSequelizeRepository<T extends Model> implements IRepository<T> {
+export abstract class BaseSequelizeRepository<T extends Model<any, any>> implements IRepository<T> {
     constructor(protected readonly model: ModelCtor<T>) { }
 
     async getAll(options: { where?: WhereOptions<T>; limit?: number; offset?: number } = {}): Promise<T[]> {
@@ -60,8 +60,15 @@ export abstract class BaseSequelizeRepository<T extends Model> implements IRepos
 
     protected async findOne(where: WhereOptions<T>): Promise<T | null> {
         try {
-            return await this.model.findOne({ where });
+
+            const record = await this.model.findOne({ where });
+            //console.log("Query Result:", record);
+            if (!record) {
+                //console.warn('No record found for the given criteria:', where);
+            }
+            return record;
         } catch (error) {
+            console.error('Error fetching record:', error);
             throw new RepositoryError('Failed to fetch record', error);
         }
     }

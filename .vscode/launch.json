@@ -13,7 +13,27 @@
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "runtimeArgs": ["--require=dotenv/config"],
-      "envFile": "${workspaceFolder}/env/local.env"
+      "envFile": "${workspaceFolder}/env/local.env",
+      "console": "integratedTerminal",
+      "stopOnEntry": true
     }
   ]
 }
+
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "type": "node",
+//       "request": "launch",
+//       "name": "Launch TS Program",
+//       "program": "${workspaceFolder}/src/index.ts",
+//       "runtimeArgs": ["-r", "ts-node/register", "--require=dotenv/config"],
+//       "outFiles": ["${workspaceFolder}/build/**/*.js"],
+//       "envFile": "${workspaceFolder}/env/local.env",
+//       "skipFiles": ["<node_internals>/**"],
+//       "console": "integratedTerminal",
+//       "stopOnEntry": true
+//     }
+//   ]
+// }

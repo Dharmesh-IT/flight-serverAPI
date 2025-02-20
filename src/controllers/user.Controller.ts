@@ -17,7 +17,8 @@ export class UserController implements IUserController {
     async getUserProfile(req: Request, res: Response) {
         const result = new ResultJson();
         try {
-            const username = req.body;
+            const { username } = req.body;
+
             const userProfile = await this._userService.getUserProfile(username);
             if (userProfile == null) {
                 result.isSuccess = false;

@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.APIUserRepository = void 0;
+const sequelize_1 = require("sequelize");
 const BaseSquelizeRepository_1 = require("../core/repository/BaseSquelizeRepository");
 const M_APIUser_model_1 = require("../database/M_APIUser.model");
 class APIUserRepository extends BaseSquelizeRepository_1.BaseSequelizeRepository {
@@ -18,12 +19,21 @@ class APIUserRepository extends BaseSquelizeRepository_1.BaseSequelizeRepository
     }
     findbyUsername(userName) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.findOne({ username: userName });
+            return this.findOne({
+                UserName: {
+                    [sequelize_1.Op.iLike]: userName
+                }
+            });
         });
     }
     singInUser(userName, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.findOne({ username: userName, password: password });
+            return this.findOne({
+                UserName: {
+                    [sequelize_1.Op.iLike]: userName
+                },
+                Password: password
+            });
         });
     }
 }
