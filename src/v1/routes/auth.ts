@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express";
-import { AuthController } from "../../controllers/auth.Controller";
+
 import { container } from '../../config/inversify.config';
 import { IAuthController } from "../../controllers/Iauth.Controller";
 
